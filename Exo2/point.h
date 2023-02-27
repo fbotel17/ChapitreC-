@@ -2,12 +2,13 @@
 
 class point
 {
-public :
+public:
 	point(float x = 0, float y = 0);
-	void affiche();
+	void abcisse();
+	void ordonnee();
 	void deplace(float x, float y);
 
-private :
+private:
 	float Px;
 	float Py;
 };

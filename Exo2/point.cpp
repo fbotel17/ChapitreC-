@@ -12,9 +12,13 @@ point::point(float x, float y)
 }
 
 
-void point::affiche()
+void point::abcisse()
 {
 	cout << "Position de x : " << Px << endl;
+}
+
+void point::ordonnee()
+{
 	cout << "Position de y : " << Py << endl;
 }
 

@@ -8,7 +8,9 @@ using namespace std;
 int main(int argc, char** argv)
 {
 	point P1(4, 5);
-	P1.affiche();
+	P1.abcisse();
+	P1.ordonnee();
 	P1.deplace(-1, -4);
-	P1.affiche();
+	P1.abcisse();
+	P1.ordonnee();
 }
