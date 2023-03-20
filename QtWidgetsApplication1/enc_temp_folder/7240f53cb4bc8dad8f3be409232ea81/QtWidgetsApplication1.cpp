@@ -160,6 +160,7 @@ void QtWidgetsApplication1::onSendMessageButonClicket()
     {
         socket->write("Hello server !\n");
     }
+	ui.contenuBDD->show();
 
     
 }

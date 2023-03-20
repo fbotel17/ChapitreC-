@@ -109,6 +109,19 @@
      </rect>
     </property>
    </widget>
+   <widget class="QPushButton" name="inscriptionButtom">
+    <property name="geometry">
+     <rect>
+      <x>70</x>
+      <y>250</y>
+      <width>75</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Inscription</string>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">
@@ -183,10 +196,27 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>inscriptionButtom</sender>
+   <signal>clicked()</signal>
+   <receiver>QtWidgetsApplication1Class</receiver>
+   <slot>inscriptionButtom()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>107</x>
+     <y>294</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>299</x>
+     <y>199</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>onDisplayMessageButtonClicket()</slot>
   <slot>onSocketConnected()</slot>
   <slot>onSendMessageButonClicket()</slot>
+  <slot>inscriptionButtom()</slot>
  </slots>
 </ui>
