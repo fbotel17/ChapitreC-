@@ -7,7 +7,10 @@
 QtWidgetsApplication1::QtWidgetsApplication1(QWidget* parent)
 	: QMainWindow(parent)
 {
+
 	ui.setupUi(this);
+	ui.inscriptionButtom2->hide();
+	ui.back->hide();
 	socket = new QTcpSocket(this);
 	QObject::connect(socket, SIGNAL(connected()), this, SLOT(onSocketConnected()));
 	QObject::connect(socket, SIGNAL(disconnected()), this, SLOT(onSocketDisconnected()));
@@ -133,8 +136,8 @@ QtWidgetsApplication1::QtWidgetsApplication1(QWidget* parent)
 
 void QtWidgetsApplication1::onDisplayMessageButtonClicket()
 {
-    QString ip = ui.IPLineEdit->text();
-    QString port = ui.portLineEdit->text();
+    QString ip = ui.LoginLineEdit->text();
+    QString port = ui.PassLineEdit->text();
 
     bool ok;
     int portAsInt = port.toInt(&ok);
@@ -160,7 +163,6 @@ void QtWidgetsApplication1::onSendMessageButonClicket()
     {
         socket->write("Hello server !\n");
     }
-	ui.contenuBDD->show();
 
     
 }
@@ -202,6 +204,50 @@ void QtWidgetsApplication1::onClientReadyRead()
 void QtWidgetsApplication1::inscriptionButtom()
 {
 	ui.contenuBDD->hide();
+	ui.contenuBDD->setEnabled(false);
+
+	ui.pushButton->hide();
+	ui.pushButton->setEnabled(false);
+
+	ui.pushButton_2->hide();
+	ui.pushButton_2->setEnabled(false);
+
+	ui.inscriptionButtom->hide();
+	ui.inscriptionButtom->setEnabled(false);
+
+	ui.conIns->setText("Page inscription");
+
+	ui.inscriptionButtom2->show();
+	ui.inscriptionButtom2->setEnabled(true);
+
+	ui.back->show();
+	ui.back->setEnabled(true);
+
+
+}
+
+void QtWidgetsApplication1::backConnectButtom()
+{
+	ui.contenuBDD->show();
+	ui.contenuBDD->setEnabled(true);
+
+	ui.pushButton->show();
+	ui.pushButton->setEnabled(true);
+
+	ui.pushButton_2->show();
+	ui.pushButton_2->setEnabled(true);
+
+	ui.inscriptionButtom->show();
+	ui.inscriptionButtom->setEnabled(true);
+
+	ui.conIns->setText("Page connexion");
+
+	ui.inscriptionButtom2->hide();
+	ui.inscriptionButtom2->setEnabled(false);
+
+
+	ui.back->hide();
+	ui.back->setEnabled(false);
 
 
 }
