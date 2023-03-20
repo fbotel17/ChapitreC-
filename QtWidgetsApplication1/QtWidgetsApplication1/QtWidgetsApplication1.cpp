@@ -1,4 +1,8 @@
 #include "QtWidgetsApplication1.h"
+#include <QtGui>
+#include <QDebug>
+#include <QtSql/QtSql>
+#include <iostream>
 
 QtWidgetsApplication1::QtWidgetsApplication1(QWidget *parent)
     : QMainWindow(parent)
@@ -12,6 +16,117 @@ QtWidgetsApplication1::QtWidgetsApplication1(QWidget *parent)
     server = new QTcpServer(this);
     QObject::connect(server, SIGNAL(newConnection()), this, SLOT(onServerNewConnection()));
     server->listen(QHostAddress::AnyIPv4, 4321);
+
+
+
+    
+        QApplication app();
+
+        QSqlDatabase db = QSqlDatabase::addDatabase("QMYSQL"); // ou mettre QSQLITE pour SQLite
+
+        db.setHostName("192.168.64.95");
+        db.setUserName("root");
+        db.setPassword("root");
+        db.setDatabaseName("initiationC"); // ou mettre le nom du fichier sqlite
+
+        if (db.open())
+        {
+            std::cout << "Connexion réussie à " << db.hostName().toStdString() << std::endl;
+        }
+        else
+        {
+            std::cout << "La connexion a échouée !" << std::endl;
+        }
+
+        // Exemple 1 :
+        QSqlQuery query("SELECT temperature FROM mesures");
+        QString test;
+        while (query.next())
+        {
+            QString temperature = query.value(0).toString();
+            qDebug() << "temperature : " << temperature;
+            test += "\n temperature : " + temperature;
+
+
+        }
+        ui.contenuBDD->setText(test);
+
+        // Exemple 2 :
+        bool retour;
+        QString requete = "SELECT * FROM mesures";
+        retour = query.exec(requete);
+        if (retour)
+        {
+            qDebug() << "nb enregistrements : " << query.size();
+            qDebug() << "nb colonnes : " << query.record().count();
+            int fieldNo = query.record().indexOf("temperature");
+            while (query.next())
+            {
+                QString date = query.value(fieldNo).toString();
+                qDebug() << "temperature : " << date;
+            }
+        }
+        else  qDebug() << query.lastError().text();
+
+        // Exemple 3 :
+        requete = "SELECT * FROM mesures";
+        retour = query.exec(requete);
+        if (retour)
+        {
+            while (query.next())
+            {
+                qDebug() << "enregistrement -> ";
+                for (int i = 0; i < query.record().count(); i++)
+                    qDebug() << query.value(i).toString();
+            }
+        }
+        else  qDebug() << query.lastError().text();
+
+        // Exemple 4 :
+        requete = "SELECT count(temperature) AS nb FROM mesures";
+
+        query.exec(requete);
+        query.first();
+        int nb = query.value(0).toInt();
+        qDebug() << "nb mesures : " << nb;
+
+        // Exemple 5 :
+        QSqlQuery r;
+        // Utilisation des marqueurs '?'
+        // INSERT INTO `mesures` (`id`, `date`, `heure`, `temperature`) VALUES (...)
+        r.prepare("INSERT INTO mesures (id, date, heure, temperature) VALUES ('', ?, ?, ?)");
+        // id en auto-incrément
+        r.addBindValue("2009-09-10");
+        r.addBindValue("09:01:00");
+        r.addBindValue(35.12);
+        if (r.exec())
+        {
+            std::cout << "Insertion réussie" << std::endl;
+        }
+        else
+        {
+            std::cout << "Echec insertion !" << std::endl;
+            qDebug() << r.lastError().text();
+        }
+
+        // Utilisation des marqueurs nominatifs
+        r.prepare("INSERT INTO mesures (id, date, heure, temperature) VALUES (:id, :date, :heure, :temperature)");
+        r.bindValue(":id", ""); // auto-incrément
+        r.bindValue(":date", "2009-09-10");
+        r.bindValue(":heure", "09:01:00");
+        r.bindValue(":temperature", 34.92);
+        if (r.exec())
+        {
+            std::cout << "Insertion réussie" << std::endl;
+        }
+        else
+        {
+            std::cout << "Echec insertion !" << std::endl;
+            qDebug() << r.lastError().text();
+        }
+
+        db.close();
+    
 
 }
 
@@ -79,4 +194,5 @@ void QtWidgetsApplication1::onClientReadyRead()
     QByteArray data = obj->read(obj->bytesAvailable());
     QString str(data);
     ui.connectionStatusLabel->setText(str);
+    obj->write(data);
 }
