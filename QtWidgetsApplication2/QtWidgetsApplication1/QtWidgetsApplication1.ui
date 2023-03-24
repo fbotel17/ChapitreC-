@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>600</width>
-    <height>400</height>
+    <width>900</width>
+    <height>629</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -102,8 +102,8 @@
    <widget class="QTextBrowser" name="contenuBDD">
     <property name="geometry">
      <rect>
-      <x>280</x>
-      <y>60</y>
+      <x>550</x>
+      <y>90</y>
       <width>256</width>
       <height>192</height>
      </rect>
@@ -113,7 +113,7 @@
     <property name="geometry">
      <rect>
       <x>120</x>
-      <y>200</y>
+      <y>190</y>
       <width>75</width>
       <height>23</height>
      </rect>
@@ -125,7 +125,7 @@
    <widget class="QTextBrowser" name="conIns">
     <property name="geometry">
      <rect>
-      <x>110</x>
+      <x>100</x>
       <y>10</y>
       <width>141</width>
       <height>31</height>
@@ -146,7 +146,7 @@ p, li { white-space: pre-wrap; }
     <property name="geometry">
      <rect>
       <x>120</x>
-      <y>170</y>
+      <y>140</y>
       <width>75</width>
       <height>23</height>
      </rect>
@@ -171,13 +171,36 @@ p, li { white-space: pre-wrap; }
      <string>Retour à la connexion</string>
     </property>
    </widget>
+   <widget class="QTextEdit" name="contenuMessage">
+    <property name="geometry">
+     <rect>
+      <x>270</x>
+      <y>230</y>
+      <width>231</width>
+      <height>91</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="envoyerButtom">
+    <property name="geometry">
+     <rect>
+      <x>320</x>
+      <y>140</y>
+      <width>111</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Envoyer Message</string>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>600</width>
+     <width>900</width>
      <height>21</height>
     </rect>
    </property>
@@ -277,6 +300,38 @@ p, li { white-space: pre-wrap; }
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>inscriptionButtom2</sender>
+   <signal>clicked()</signal>
+   <receiver>QtWidgetsApplication1Class</receiver>
+   <slot>inscriptionButtom2()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>157</x>
+     <y>184</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>299</x>
+     <y>199</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>envoyerButtom</sender>
+   <signal>clicked()</signal>
+   <receiver>QtWidgetsApplication1Class</receiver>
+   <slot>envoyerButtom()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>375</x>
+     <y>184</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>449</x>
+     <y>314</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>onDisplayMessageButtonClicket()</slot>
@@ -284,5 +339,7 @@ p, li { white-space: pre-wrap; }
   <slot>onSendMessageButonClicket()</slot>
   <slot>inscriptionButtom()</slot>
   <slot>backConnectButtom()</slot>
+  <slot>inscriptionButtom2()</slot>
+  <slot>envoyerButtom()</slot>
  </slots>
 </ui>

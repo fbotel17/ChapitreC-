@@ -29,4 +29,6 @@ public slots:
     void onClientReadyRead();
     void inscriptionButtom();
     void backConnectButtom();
+    void inscriptionButtom2();
+    void envoyerButtom();
 };

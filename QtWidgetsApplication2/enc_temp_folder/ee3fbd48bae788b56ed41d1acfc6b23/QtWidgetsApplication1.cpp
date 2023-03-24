@@ -289,8 +289,6 @@ void QtWidgetsApplication1::envoyerButtom()
 {
 	QString message = ui.contenuMessage->toPlainText();
 
-
-
 	QSqlQuery re;
 	// Utilisation des marqueurs '?'
 	// INSERT INTO `mesures` (`id`, `date`, `heure`, `temperature`) VALUES (...)
