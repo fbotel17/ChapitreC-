@@ -8,6 +8,7 @@
 class QtWidgetsApplication1 : public QMainWindow
 {
     Q_OBJECT
+        QString id;
 
 public:
     QtWidgetsApplication1(QWidget* parent = Q_NULLPTR);
@@ -31,4 +32,5 @@ public slots:
     void backConnectButtom();
     void inscriptionButtom2();
     void envoyerButtom();
+    void pushButton();
 };

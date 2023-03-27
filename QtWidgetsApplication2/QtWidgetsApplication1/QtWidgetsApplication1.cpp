@@ -4,6 +4,7 @@
 #include <QtSql/QtSql>
 #include <iostream>
 
+
 QtWidgetsApplication1::QtWidgetsApplication1(QWidget* parent)
 	: QMainWindow(parent)
 {
@@ -42,13 +43,12 @@ QtWidgetsApplication1::QtWidgetsApplication1(QWidget* parent)
 	}
 
 	// Exemple 1 :
-	QSqlQuery query("SELECT temperature FROM mesures");
+	QSqlQuery query("SELECT contenu FROM Message ORDER BY id DESC LIMIT 0, 2");
 	QString test;
 	while (query.next())
 	{
-		QString temperature = query.value(0).toString();
-		qDebug() << "temperature : " << temperature;
-		test += "\n temperature : " + temperature;
+		QString mess = query.value(0).toString();
+		test += "\n temperature : " + mess;
 
 
 	}
@@ -56,7 +56,7 @@ QtWidgetsApplication1::QtWidgetsApplication1(QWidget* parent)
 
 	// Exemple 2 :
 	bool retour;
-	QString requete = "SELECT * FROM mesures";
+	QString requete = "SELECT * FROM mesures ORDER BY id DESC LIMIT 0, 5";
 	retour = query.exec(requete);
 	if (retour)
 	{
@@ -297,7 +297,7 @@ void QtWidgetsApplication1::envoyerButtom()
 	re.prepare("INSERT INTO Message (contenu, idUser) VALUES (?, ?)");
 	// id en auto-incrément
 	re.addBindValue(message);
-	re.addBindValue("1");
+	re.addBindValue(this->id);
 	if (re.exec())
 	{
 		std::cout << "Insertion réussie" << std::endl;
@@ -310,4 +310,28 @@ void QtWidgetsApplication1::envoyerButtom()
 		std::cout << "Echec insertion !" << std::endl;
 		qDebug() << re.lastError().text();
 	}
+}
+
+void QtWidgetsApplication1::pushButton()
+{
+	QString log = ui.LoginLineEdit->text();
+	QString pass = ui.PassLineEdit->text();
+
+
+	qDebug() << "login" << log << endl;
+
+	qDebug() << "password"<< pass;
+
+	QSqlQuery query("SELECT id, nom, mdp FROM User WHERE nom = '"+ log + "' and mdp = '" + pass+ "'");
+
+	while (query.next())
+	{
+		ui.connectBDD->setText("connecté");
+		qDebug() << "connecté youhou";
+		QString idd = query.value(0).toString();
+
+		this->id = idd;
+
+	}
+
 }

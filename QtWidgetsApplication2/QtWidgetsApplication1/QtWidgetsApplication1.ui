@@ -194,6 +194,19 @@ p, li { white-space: pre-wrap; }
      <string>Envoyer Message</string>
     </property>
    </widget>
+   <widget class="QLabel" name="connectBDD">
+    <property name="geometry">
+     <rect>
+      <x>320</x>
+      <y>20</y>
+      <width>171</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">
@@ -332,6 +345,22 @@ p, li { white-space: pre-wrap; }
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>pushButton</sender>
+   <signal>clicked()</signal>
+   <receiver>QtWidgetsApplication1Class</receiver>
+   <slot>pushButton()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>140</x>
+     <y>188</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>449</x>
+     <y>314</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>onDisplayMessageButtonClicket()</slot>
@@ -341,5 +370,6 @@ p, li { white-space: pre-wrap; }
   <slot>backConnectButtom()</slot>
   <slot>inscriptionButtom2()</slot>
   <slot>envoyerButtom()</slot>
+  <slot>pushButton()</slot>
  </slots>
 </ui>
