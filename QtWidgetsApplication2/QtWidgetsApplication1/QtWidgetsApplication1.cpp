@@ -42,7 +42,7 @@ QtWidgetsApplication1::QtWidgetsApplication1(QWidget* parent)
 		std::cout << "La connexion a échouée !" << std::endl;
 	}
 
-	// Exemple 1 :
+	// afficher les 100 derniers messages:
 	QSqlQuery query("SELECT contenu FROM Message ORDER BY id DESC LIMIT 0, 2");
 	QString test;
 	while (query.next())
